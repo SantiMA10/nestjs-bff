@@ -23,4 +23,6 @@ export class PostController {
 		res.status(HttpStatus.OK);
 		return post;
 	}
+
+	// TODO: missing CRUD methods
 }
