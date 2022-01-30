@@ -4,10 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserService } from './user/user.service';
 import { HttpService } from './http/http.service';
+import { PostCommentService } from './post-comment/post-comment.service';
 
 @Module({
 	imports: [],
 	controllers: [AppController],
-	providers: [AppService, UserService, HttpService],
+	providers: [AppService, UserService, HttpService, PostCommentService],
 })
 export class AppModule {}
