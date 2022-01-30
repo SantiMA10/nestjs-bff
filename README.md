@@ -19,3 +19,11 @@ yarn start:dev // runs both projects in watch mode (backend http://localhost:500
 ```
 
 More information about each service in each README.md file.
+
+# Project structure
+
+- `/docs` contains a Postman collection with all the endpoints available in the bff project.
+- `/services` contains the two nest.js projects
+  - `/services/backend` is the nest.js that serves as common backend api
+  - `/services/bff` is the nest.js that serves a backend for frontend api, this means that it depends on `/services/backend`
+- `.github/workflows` contains the configuration to lint, test and build the repo on each merge with the main branch.

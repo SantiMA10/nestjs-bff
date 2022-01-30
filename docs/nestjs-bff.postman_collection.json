@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "d765cce8-cc34-4bfe-a618-264a7ada6847",
+		"name": "nestjs-bff",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "GET POST by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
