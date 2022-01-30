@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as nock from 'nock';
 
 import { PostCommentBuilder } from '../../test/utils/builders/PostCommentBuilder';
+import { mockPostCommentForPostIdFoundRequest } from '../../test/utils/requests/post-comment.requests';
 import { PostCommentService } from './post-comment.service';
 
 describe('PostCommentService', () => {
@@ -25,10 +26,7 @@ describe('PostCommentService', () => {
 		});
 
 		it('returns an empty array if there is no comment for that post', async () => {
-			nock('https://jsonplaceholder.typicode.com')
-				.get('/comments')
-				.query({ postId: -1 })
-				.reply(200, []);
+			mockPostCommentForPostIdFoundRequest(-1, []);
 			const response = await service.findByPostId(-1);
 
 			expect(response).toStrictEqual([]);
@@ -36,10 +34,7 @@ describe('PostCommentService', () => {
 
 		it('returns a list of comments if the post have any comments', async () => {
 			const comment = PostCommentBuilder.build();
-			nock('https://jsonplaceholder.typicode.com')
-				.get('/comments')
-				.query({ postId: comment.postId })
-				.reply(200, [comment]);
+			mockPostCommentForPostIdFoundRequest(comment.postId, [comment]);
 
 			const response = await service.findByPostId(comment.postId);
 

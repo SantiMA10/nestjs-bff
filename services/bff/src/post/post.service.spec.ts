@@ -2,6 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as nock from 'nock';
 
 import { PostBuilder } from '../../test/utils/builders/PostBuilder';
+import {
+	mockPostFoundRequest,
+	mockPostNotFoundRequest,
+} from '../../test/utils/requests/post.requests';
 import { PostService } from './post.service';
 
 describe('PostService', () => {
@@ -25,7 +29,8 @@ describe('PostService', () => {
 		});
 
 		it('returns undefined if the post does not exits', async () => {
-			nock('https://jsonplaceholder.typicode.com').get('/posts/-1').reply(404, {});
+			mockPostNotFoundRequest(-1);
+
 			const response = await service.findById(-1);
 
 			expect(response).toBeUndefined();
@@ -33,7 +38,7 @@ describe('PostService', () => {
 
 		it('returns a list of comments if the post have any comments', async () => {
 			const post = PostBuilder.build();
-			nock('https://jsonplaceholder.typicode.com').get(`/posts/${post.id}`).reply(200, post);
+			mockPostFoundRequest(post);
 
 			const response = await service.findById(post.id);
 

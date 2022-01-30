@@ -2,6 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as nock from 'nock';
 
 import { UserBuilder } from '../../test/utils/builders/UserBuilder';
+import {
+	mockUserFoundRequest,
+	mockUserNotFoundRequest,
+} from '../../test/utils/requests/user.requests';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
@@ -25,7 +29,8 @@ describe('UserService', () => {
 		});
 
 		it('returns the undefined if the user cannot be found', async () => {
-			nock('https://jsonplaceholder.typicode.com').get(`/users/-1`).reply(404, {});
+			mockUserNotFoundRequest(-1);
+
 			const response = await service.findById(-1);
 
 			expect(response).toBeUndefined();
@@ -33,7 +38,7 @@ describe('UserService', () => {
 
 		it('returns the User if the user exists', async () => {
 			const user = UserBuilder.build();
-			nock('https://jsonplaceholder.typicode.com').get(`/users/${user.id}`).reply(200, user);
+			mockUserFoundRequest(user);
 
 			const response = await service.findById(user.id);
 
