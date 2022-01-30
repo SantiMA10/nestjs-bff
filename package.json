@@ -1,0 +1,24 @@
+{
+  "name": "nestjs-bff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SantiMA10/nestjs-bff.git",
+  "author": "Santiago Martin Agra",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn turbo run build",
+    "test:unit": "yarn turbo run test",
+    "test:e2e": "yarn turbo run test:e2e",
+    "lint": "yarn turbo run lint",
+    "start:prod": "yarn turbo run start:prod",
+    "start:dev": "yarn turbo run start:dev"
+  },
+  "workspaces": [
+    "services/*"
+  ],
+  "devDependencies": {
+    "turbo": "^1.1.1"
+  },
+  "packageManager": "yarn@1.22.5"
+}
