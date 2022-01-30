@@ -1,3 +1,4 @@
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as nock from 'nock';
 
@@ -13,6 +14,11 @@ describe('PostService', () => {
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
+			imports: [
+				ConfigModule.forRoot({
+					envFilePath: '.env.test',
+				}),
+			],
 			providers: [PostService],
 		}).compile();
 

@@ -12,6 +12,14 @@ You can skip this step if you already run yarn install in the project root.
 yarn install 
 ```
 
+## Configuration
+
+This projects uses a `.env` file for each environment to configure the host of the backend project, make sure you have your `.env` files update to test it, run it locally or deploy it.
+
+- `.env.test`: the one used during the tests
+- `.env.development`: the one used when the NODE_ENV env var is set to any that is not `production`
+- `.env.production`: the one used when the NODE_ENV env var is set to `production`
+
 ## Running the app
 
 ```bash

@@ -1,4 +1,5 @@
 import { INestApplication } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as nock from 'nock';
 import * as request from 'supertest';
@@ -18,7 +19,12 @@ describe('PostController (e2e)', () => {
 		nock.cleanAll();
 
 		const moduleFixture: TestingModule = await Test.createTestingModule({
-			imports: [AppModule],
+			imports: [
+				ConfigModule.forRoot({
+					envFilePath: '.env.test',
+				}),
+				AppModule,
+			],
 		}).compile();
 
 		app = moduleFixture.createNestApplication();
